@@ -1,4 +1,12 @@
+import { AngularFireList } from 'angularfire2/database';
 import { Component, OnInit } from '@angular/core';
+
+//serviecs
+import { ClientService } from './../../services/client.service';
+
+//models
+import { Client } from './../../models/client.model';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-clients',
@@ -7,9 +15,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientsComponent implements OnInit {
 
-  constructor() { }
+  clients: Client[];
+
+  constructor(
+    public clientService: ClientService
+  ) { }
 
   ngOnInit() {
+   this.clientService.getClients().valueChanges().subscribe(klijenti => {
+     this.clients = klijenti;
+     console.log(this.clients);
+   });
+   
+  
   }
 
 }
