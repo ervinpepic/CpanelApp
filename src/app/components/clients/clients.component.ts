@@ -15,19 +15,30 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ClientsComponent implements OnInit {
 
-  clients: Client[];
-
+  clients: any[];
+  totalOwed: number;
   constructor(
     public clientService: ClientService
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
    this.clientService.getClients().valueChanges().subscribe(klijenti => {
      this.clients = klijenti;
      console.log(this.clients);
+     this.getTotalOwed();
    });
    
   
+  }
+
+  getTotalOwed() {
+    let ukupno = 0;
+    for(let i = 0; i < this.clients.length; i++) {
+      ukupno += parseFloat(this.clients[i].balance);
+    }
+    this.totalOwed = ukupno;
+    console.log(this.totalOwed);
   }
 
 }
