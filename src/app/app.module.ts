@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 //services
 import { ClientService } from './services/client.service';
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    CommonModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],

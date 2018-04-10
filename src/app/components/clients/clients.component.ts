@@ -1,6 +1,6 @@
 import { AngularFireList } from 'angularfire2/database';
 import { Component, OnInit } from '@angular/core';
-
+import { AsyncPipe } from '@angular/common';
 //serviecs
 import { ClientService } from './../../services/client.service';
 
@@ -25,7 +25,7 @@ export class ClientsComponent implements OnInit {
   ngOnInit() {
    this.clientService.getClients().valueChanges().subscribe(klijenti => {
      this.clients = klijenti;
-     console.log(this.clients);
+     
      this.getTotalOwed();
    });
    
@@ -38,7 +38,7 @@ export class ClientsComponent implements OnInit {
       ukupno += parseFloat(this.clients[i].balance);
     }
     this.totalOwed = ukupno;
-    console.log(this.totalOwed);
+  
   }
 
 }
