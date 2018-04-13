@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 //services
 import { ClientService } from './services/client.service';
-
 //Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -58,12 +57,14 @@ const appRoutes: Routes = [
     FormsModule,
     CommonModule,
     RouterModule.forRoot(appRoutes),
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    FlashMessagesModule
   ],
   providers: [
     ClientService,
     AngularFireAuth,
-    AngularFireDatabase
+    AngularFireDatabase,
+    FlashMessagesService
   ],
   bootstrap: [AppComponent]
 })

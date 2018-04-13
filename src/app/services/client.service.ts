@@ -15,7 +15,7 @@ import { Client } from './../models/client.model';
 export class ClientService {
 
   clients: AngularFireList<any[]>;
-  client: FirebaseObjectObservable<any>;
+  client: AngularFireObject<any>;
 
   constructor(
     public af: AngularFireDatabase
@@ -25,4 +25,7 @@ export class ClientService {
      return this.af.list<Client>('/clients');
    }
 
+   newClient(client: Client) {
+    this.af.list<Client>('/clients').push(client);
+   }
 }
