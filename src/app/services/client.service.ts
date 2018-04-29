@@ -24,6 +24,11 @@ export class ClientService {
    getClients() {
      return this.af.list<Client>('/clients');
    }
+   
+   getClient(id: string) {
+     this.client = this.af.object('/clients/' + id);
+     return this.client;
+   }
 
    newClient(client: Client) {
     this.af.list<Client>('/clients').push(client);

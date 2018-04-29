@@ -7,7 +7,6 @@ import { ClientService } from './../../services/client.service';
 //models
 import { Client } from './../../models/client.model';
 import { Observable } from 'rxjs/Observable';
-
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
@@ -23,13 +22,14 @@ export class ClientsComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.clientService.getClients().valueChanges().subscribe(klijenti => {
-     this.clients = klijenti;
-     
-     this.getTotalOwed();
+    
+   this.clientService.getClients().snapshotChanges().map(klijenti => {
+     return klijenti.map(
+       action => ({ key: action.key, ...action.payload.val()}));  
+   }).subscribe(klijenti => {
+        return this.clients = klijenti;
    });
-   
-  
+
   }
 
   getTotalOwed() {
