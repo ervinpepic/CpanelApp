@@ -37,4 +37,8 @@ export class ClientService {
    updateClient(id: string, client: Client) {
      return this.af.list<Client>('/clients').update(id, client);
    }
+
+   deleteClient(id:string) {
+     return this.af.list<Client>('/clients').remove(id);
+   }
 }

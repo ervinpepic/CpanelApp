@@ -30,15 +30,15 @@ export class ClientDetailsComponent implements OnInit {
     //Get ID from url
     this.id = this.activatedRoute.snapshot.params['id'];
     console.log(this.id);
-    //get client
+
+    //Get client
     this.clientService.getClient(this.id).valueChanges().subscribe(klijent => {
       if (klijent.balance > 0) {
         this.hasBalance = true;
   
       }
       this.client = klijent;
-      console.log(this.client);
-    })
+    });
   }
 
   updateBlance(id: string) {
@@ -46,6 +46,14 @@ export class ClientDetailsComponent implements OnInit {
     this.clientService.updateClient(this.id, this.client);
     this.flashMessagesService.show('Successfully updated', { cssClass: 'alert-success', timeout: 4000 });
     this.router.navigate(['/client/'+this.id]);
+  }
+
+  onDeleteClick() {
+    if (confirm("Are you sure you want to delete this user?")) {
+      this.clientService.deleteClient(this.id);
+      this.flashMessagesService.show('Client deleted!', { cssClass: 'alert-success', timeout: 4000 });
+      this.router.navigate(['/']);
+    }
   }
 
 }
