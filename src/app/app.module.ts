@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 //services
 import { ClientService } from './services/client.service';
+import { AuthService } from './services/auth.service';
+
 //Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -64,6 +66,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     ClientService,
+    AuthService,
     AngularFireAuth,
     AngularFireDatabase,
     FlashMessagesService
