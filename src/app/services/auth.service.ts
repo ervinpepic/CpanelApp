@@ -17,4 +17,14 @@ export class AuthService {
       greska => odbaci(greska));
     });
   }
+
+  //Login Checking
+  getAuth() {
+    return this.afAuth.authState.map(autentikacija => autentikacija);
+  }
+
+  logout() {
+    this.afAuth.auth.signOut();
+  }
+  
 }
