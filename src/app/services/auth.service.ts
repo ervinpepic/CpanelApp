@@ -26,5 +26,13 @@ export class AuthService {
   logout() {
     this.afAuth.auth.signOut();
   }
+
+  register(email: string, password: string) {
+    return new Promise((prihvati, odbij) => {
+      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then(korisnickiPodaci => prihvati(korisnickiPodaci),
+        greska => odbij(greska))
+    });
+  }
   
 }
