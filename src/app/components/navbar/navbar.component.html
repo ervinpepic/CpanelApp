@@ -33,6 +33,9 @@
         <li *ngIf="isLoggedIn" class="nav-item">
           <a href="#"  class="nav-link" (click)="onLogoutClick()">Logout</a>
         </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
+          <a href="#"  routerLink="/settings" class="nav-link">Settings</a>
+        </li>
       </ul>
     </div>
   </div>

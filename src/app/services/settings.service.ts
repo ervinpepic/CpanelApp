@@ -10,10 +10,18 @@ export class SettingsService {
     disableBalanceOnEdit: false,
   }
 
-  constructor() { }
+  constructor() {
+    if (localStorage.getItem('podesavanja') != null) {
+      this.settings = JSON.parse(localStorage.getItem('podesavanja'))
+    }
+   }
 
   getSettings() {
     return this.settings;
+  }
+
+  changeSettings(settings:Settings) {
+    localStorage.setItem('podesavanja', JSON.stringify(settings));
   }
 
 }
