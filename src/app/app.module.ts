@@ -8,7 +8,8 @@ import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messag
 import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
-
+import { SettingsService } from './services/settings.service';
+import { RegisterGuard } from './guards/register.guard';
 //Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -34,7 +35,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 //Routes
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [RegisterGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'add-client', component: AddClientComponent, canActivate: [AuthGuard] },
   { path: 'client/:id', component: ClientDetailsComponent, canActivate: [AuthGuard] },
@@ -71,7 +72,9 @@ const appRoutes: Routes = [
     AngularFireAuth,
     AngularFireDatabase,
     FlashMessagesService,
-    AuthGuard
+    AuthGuard,
+    SettingsService,
+    RegisterGuard  
   ],
   bootstrap: [AppComponent]
 })
